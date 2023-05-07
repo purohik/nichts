@@ -4,19 +4,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("World")
+                    Nichts("World")
                 }
             }
         }
@@ -42,7 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Nichts(name: String, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -66,21 +73,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Light,
             )
         }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = "bebudi madass kahiki",
-            )
-        }
     }
 }
 
 @Composable
 fun FullScreen(word: String, modifier: Modifier = Modifier) {
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .padding(50.dp)
@@ -88,20 +87,49 @@ fun FullScreen(word: String, modifier: Modifier = Modifier) {
     ) {
         Row() {}
         Row(
-
         ) {
             Text(
                 text = "You should try..."
             )
         }
         Row() {
+            SuggestedWord(word = "krishna")
+        }
+        Row() {
+            Text(
+                text = "Input the result..."
+            )
+        }
+        Row() {
+
+        }
+    }
+}
+
+@Composable
+fun SuggestedWord(word: String) {
+    var buttonState by remember {
+        mutableStateOf(LetterState.CORRECT)
+    }
+    Row() {
+        for (letter in word) {
+            Text(text = letter.toString())
+        }
+    }
+}
+
+@Composable
+fun InputWord(word: String) {
+    Row() {
+        for (letter in word) {
+            Text(text = letter.toString())
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun NichtsPreview() {
     NichtsTheme {
         FullScreen("banana")
     }
