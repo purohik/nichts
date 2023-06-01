@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -50,7 +49,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Nichts(name: String, modifier: Modifier = Modifier) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -62,7 +62,7 @@ fun Nichts(name: String, modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Light,
             )
             Text(
-                text = "Hello everyone!",
+                text = name,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Light,
             )
@@ -76,7 +76,7 @@ fun Nichts(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FullScreen(word: String, modifier: Modifier = Modifier) {
+fun FullScreen(word: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -84,59 +84,39 @@ fun FullScreen(word: String, modifier: Modifier = Modifier) {
             .padding(50.dp)
             .background(Color.Cyan)
     ) {
-        Row(
-        ) {
+        Row {
             Text(
                 text = "You should try..."
             )
         }
-        Row() {
+        Row {
             SuggestedWord(word = "krishna")
         }
-        Row() {
+        Row {
             Text(
                 text = "Input the result..."
             )
         }
-        InputWord(word = "wlerd")
-        Row() {
-
-        }
+        InputWord(word = "kekws")
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SuggestedWord(word: String) {
-    var buttonState by remember {
-        mutableStateOf(LetterState.CORRECT)
-    }
-    var counter by remember {
-        mutableStateOf(0);
-    };
-    Row(
-    ) {
+    Row {
         for (letter in word) {
             Text(text = letter.toString())
-//            OutlinedTextField(
-//                value = letter.toString(),
-//                onValueChange = {},
-//                label = {},
-//                readOnly = true,
-//                modifier = Modifier.width(20.dp)
-//            )
         }
-//        Button(onClick = { counter += 1 }) { Text("$counter times clicked.") }
     }
 }
 
 @Composable
 fun InputWord(word: String) {
-    Row() {
+    Row {
         for (letter in word) {
             var letterState by remember {
                 mutableStateOf(LetterState.CORRECT)
-            };
+            }
             Button(
                 onClick = {
                     letterState = when (letterState) {
@@ -146,7 +126,8 @@ fun InputWord(word: String) {
                     }
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = BUTTON_STATES[letterState]!!)
+                    containerColor = BUTTON_STATES[letterState]!!
+                )
             ) {
                 Text(
                     text = letter.toString(),
@@ -160,6 +141,7 @@ fun InputWord(word: String) {
 @Composable
 fun NichtsPreview() {
     NichtsTheme {
-        FullScreen("banana")
+//        FullScreen("banana")
+        CompleteScreen()
     }
 }
