@@ -1,8 +1,11 @@
 package com.purohik.nichts
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -20,13 +23,48 @@ import com.purohik.nichts.LetterState.NOT_PRESENT
 
 @Composable
 fun CompleteScreen() {
-  Row(
-    verticalAlignment = Alignment.CenterVertically,
+  Box(
     modifier = Modifier
       .fillMaxSize()
-      .background(color = Color(172, 125, 255, 200))
+      .background(
+        color = Color(213, 123, 132, 100)
+      ),
+    contentAlignment = Alignment.TopCenter
   ) {
-    RenderWord("paris")
+    Column {
+      Row(
+        modifier = Modifier
+          .fillMaxWidth()
+//        .background(color = Color(172, 125, 255, 200)),
+      ) {
+        Column(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .fillMaxWidth()
+            .background(
+              color = Color(255, 235, 59, 100)
+            )
+        ) {
+          RenderWord("paris")
+        }
+      }
+      Row(
+        modifier = Modifier
+          .fillMaxWidth()
+//        .background(color = Color(172, 125, 255, 200)),
+      ) {
+        Column(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .fillMaxWidth()
+            .background(
+              color = Color(59, 235, 255, 100)
+            )
+        ) {
+          TryWordButton()
+        }
+      }
+    }
   }
 }
 
@@ -54,8 +92,22 @@ fun RenderWord(word: String) {
           containerColor = BUTTON_STATES[letterState]!!
         )
       ) {
-        Text(text = letter.toString())
+        Text(
+          text = letter.toString(),
+          color = Color.Black
+        )
       }
+    }
+  }
+}
+
+@Composable
+fun TryWordButton() {
+  Row() {
+    Button(
+      onClick = {}
+    ) {
+      Text("Try this word!")
     }
   }
 }

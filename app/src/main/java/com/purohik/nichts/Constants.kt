@@ -7,7 +7,7 @@ enum class LetterState {
 }
 
 val BUTTON_STATES = mapOf(
-    LetterState.CORRECT to Color.Green,
-    LetterState.INCORRECT to Color.Yellow,
-    LetterState.NOT_PRESENT to Color.Gray,
+    LetterState.CORRECT to Color(186,255,201, 200),
+    LetterState.INCORRECT to Color(255,255,156, 255),
+    LetterState.NOT_PRESENT to Color(128, 139, 150, 255),
 )
