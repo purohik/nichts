@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import com.purohik.nichts.LetterState.CORRECT
 import com.purohik.nichts.LetterState.INCORRECT
 import com.purohik.nichts.LetterState.NOT_PRESENT
-import com.purohik.nichts.logic.getWords
+import com.purohik.nichts.logic.getSomeWords
 
 @Composable
 fun CompleteScreen() {
@@ -46,7 +46,7 @@ fun CompleteScreen() {
               color = Color(255, 235, 59, 100)
             )
         ) {
-          val words: List<String> = getWords()
+          val words: List<String> = getSomeWords(5)
           for (word in words) {
             RenderWord(word = word)
           }
